@@ -1,3 +1,7 @@
+/deb/usr/share/spark/*
+/target/*
+*target*
+**/target
 *#*#
 *.#*
 *.iml

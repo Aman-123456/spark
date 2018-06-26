@@ -156,7 +156,7 @@ BUILD_COMMAND=("$MVN" -T 1C clean package -DskipTests $@)
 echo -e "\nBuilding with..."
 echo -e "\$ ${BUILD_COMMAND[@]}\n"
 
-"${BUILD_COMMAND[@]}"
+#"${BUILD_COMMAND[@]}"
 
 # Make directories
 rm -rf "$DISTDIR"

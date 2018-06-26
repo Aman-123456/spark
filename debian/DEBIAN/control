@@ -1,0 +1,9 @@
+Package: fk-fdp-spark
+Version: 2.0.0.fk.1
+Architecture: any
+Depends: java8-runtime, Hadoop (>= 2.7)
+Description: Apache Spark is a general-purpose data processing engine,
+ an API-powered toolkit. Spark’s original design goal,
+ to enable rapid in-memory processing of
+ sizeable data volumes.
+ .
