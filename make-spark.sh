@@ -18,6 +18,18 @@ export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 #Now copy from dist folder to deb/usr/share/spark
 rm -rf deb
 cp -r debian deb
+
+DEB_VERSION=`date +%Y%m%d%H%M`
+DEB_TAG=`git log --format="%H" -n 1`
+
+
+
+#replace control file _VERSION_, _TAG_
+
+sed -i "s|_VERSION_|${DEB_VERSION}|" deb/DEBIAN/control
+sed -i "s|_TAG_|${DEB_TAG}|" deb/DEBIAN/control
+
+
 mkdir -p deb/usr/share/spark/
 cp -R dist/* deb/usr/share/spark/
 
@@ -26,10 +38,12 @@ rm -R deb/usr/share/spark/examples
 #Create the package
 dpkg-deb --build deb
 
+mv deb.deb ${PACKAGE}_${DEB_VERSION}.deb
+
 #Now add packages to the repository
 
 REPO_SERVICE_HOST="repo-svc-app-0001.nm.flipkart.com"
 REPO_SERVICE_PORT="8080"
 REPO_NAME=fk-fdp-spark
 PACKAGE=fk-fdp-spark
-reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs deb/${PACKAGE}_$DEB_VERSION.deb
+reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs ${PACKAGE}_$DEB_VERSION.deb
