@@ -26,6 +26,7 @@ DEB_FILE_NAME=${PACKAGE}_${DEB_VERSION}_${DEB_TAG}.deb
 
 
 
+
 #replace control file _VERSION_, _TAG_
 
 sed -i "s|_VERSION_|${DEB_VERSION}|" deb/DEBIAN/control
@@ -43,7 +44,7 @@ rm -R deb/usr/share/spark/examples
 dpkg-deb --build deb
 
 
-mv deb.deb ${DEB_FILE_NAME}.deb
+mv deb.deb ${DEB_FILE_NAME}
 
 
 #Now add packages to the repository
@@ -52,4 +53,4 @@ REPO_SERVICE_HOST="repo-svc-app-0001.nm.flipkart.com"
 REPO_SERVICE_PORT="8080"
 REPO_NAME=fk-fdp-spark
 
-reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs ${DEB_FILE_NAME}.deb
+reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs ${DEB_FILE_NAME}
