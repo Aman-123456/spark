@@ -1,5 +1,8 @@
 Package: fk-fdp-spark
 Version: 2.0.0._VERSION_._TAG_
-Architecture: any
-Depends: java8-runtime, Hadoop (>= 2.7)
+Architecture: all
+Section: fdp
+Priority: standard
+Maintainer: FDP_INFRA-DEV <fdp-infra-dev@flipkart.com>
+Depends: oracle-java8-jdk
 Description: Apache Spark is a data processing engine with the ability of in-memory processing of data.
