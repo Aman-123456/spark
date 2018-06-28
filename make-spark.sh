@@ -19,8 +19,11 @@ export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 rm -rf deb
 cp -r debian deb
 
+PACKAGE=fk-fdp-spark
 DEB_VERSION=`date +%Y%m%d%H%M`
 DEB_TAG=`git log --format="%H" -n 1`
+DEB_FILE_NAME=${PACKAGE}_${DEB_VERSION}_${DEB_TAG}.deb
+
 
 
 
@@ -42,7 +45,7 @@ dpkg-deb --build deb
 
 ls
 
-mv deb.deb ${PACKAGE}_${DEB_VERSION}.deb
+mv deb.deb ${DEB_FILE_NAME}.deb
 
 ls
 
@@ -51,5 +54,5 @@ ls
 REPO_SERVICE_HOST="repo-svc-app-0001.nm.flipkart.com"
 REPO_SERVICE_PORT="8080"
 REPO_NAME=fk-fdp-spark
-PACKAGE=fk-fdp-spark
-reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs ${PACKAGE}_${DEB_VERSION}.deb
+
+reposervice --host $REPO_SERVICE_HOST --port $REPO_SERVICE_PORT pubrepo --repo ${REPO_NAME} --appkey ${PACKAGE} --debs ${DEB_FILE_NAME}.deb
