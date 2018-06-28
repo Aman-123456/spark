@@ -44,6 +44,8 @@ ls
 
 mv deb.deb ${PACKAGE}_${DEB_VERSION}.deb
 
+ls
+
 #Now add packages to the repository
 
 REPO_SERVICE_HOST="repo-svc-app-0001.nm.flipkart.com"
