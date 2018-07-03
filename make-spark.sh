@@ -5,7 +5,7 @@ export MAVEN_OPTS="-Xmx2g -XX:MaxPermSize=512M -XX:ReservedCodeCacheSize=512m"
 
 #Now clean and install Maven, skip tests so that it does not take a long time;
 #multiple cores are used for further speeding up the execution of the command
-./build/mvn clean install -DskipTests -T10C
+./build/mvn clean
 
 #Then build the package
 ./build/mvn -Pyarn -Phadoop-2.7 -Dhadoop.version=2.7.1 -DskipTests package
